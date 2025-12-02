@@ -3,21 +3,32 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
 
-            <groupId>com.angga7togk.placeholderapi</groupId>
+            <groupId>org.powernukkitx.placeholderapi</groupId>
             <artifactId>placeholderapi</artifactId>
-            <version>1.0-SNAPSHOT</version>
+            <version>1.0.0</version>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
         <maven.compiler.target>21</maven.compiler.target>
     </properties>
 
-    <dependencies>
+    <repositories>
+        <repository>
+            <id>jitpack.io</id>
+            <url>https://www.jitpack.io</url>
+        </repository>
+        <repository>
+            <id>PowerNukkitX-releases</id>
+            <name>PowerNukkitX Repository</name>
+            <url>https://repo.powernukkitx.org/releases</url>
+        </repository>
+    </repositories>
 
+    <dependencies>
         <dependency>
-            <groupId>cn.nukkit</groupId>
-            <artifactId>Nukkit</artifactId>
-            <version>MOT-SNAPSHOT</version>
+            <groupId>org.powernukkitx</groupId>
+            <artifactId>server</artifactId>
+            <version>2.0.0-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>
