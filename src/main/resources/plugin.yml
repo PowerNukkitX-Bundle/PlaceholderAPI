@@ -1,6 +1,6 @@
 name: PlaceholderAPI
 main: org.powernukkitx.placeholderapi.PlaceholderAPI
-author: Angga7togk
+authors: [Angga7togk, Buddelbubi]
 version: 1.0.0
-api: [2.0.0]
+api: 2.0.0
 description: PlaceholderAPI
