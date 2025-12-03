@@ -34,6 +34,10 @@ public class PlaceholderAPI extends PluginBase {
         placeholders.put(identifier.toLowerCase(), placeholder);
     }
 
+    public boolean containsPlaceholder(String text) {
+        return PLACEHOLDER_PATTERN.matcher(text).find();
+    }
+
     public String processPlaceholders(Player player, String text) {
         Matcher matcher = PLACEHOLDER_PATTERN.matcher(text);
         StringBuffer result = new StringBuffer();

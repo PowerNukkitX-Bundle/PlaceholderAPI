@@ -35,7 +35,7 @@
 You can register a static placeholder using the `StaticPlaceholder` class:
 
 ```java
-PlaceholderAPI.register("server_name", new StaticPlaceholder(() -> "My Nukkit Server"));
+PlaceholderAPI.get().register("server_name", new StaticPlaceholder(() -> "My Nukkit Server"));
 ```
 
 ### 2. Register a Dynamic Placeholder with Parameters
@@ -43,7 +43,7 @@ PlaceholderAPI.register("server_name", new StaticPlaceholder(() -> "My Nukkit Se
 For placeholders with parameters, use the `VisitorPlaceholder` class:
 
 ```java
-PlaceholderAPI.register("player_stat", new VisitorPlaceholder((player, params) -> {
+PlaceholderAPI.get().register("player_stat", new VisitorPlaceholder((player, params) -> {
     if (params.length == 0) {
         return "No stat provided!";
     }
@@ -61,7 +61,7 @@ PlaceholderAPI.register("player_stat", new VisitorPlaceholder((player, params) -
 ### 3. Register placeholder the fast way
 
 ```java
-PlaceholderAPI.register("player_exp", (player, params) -> String.valueOf(player.getExperience()));
+PlaceholderAPI.get().register("player_exp", (player, params) -> String.valueOf(player.getExperience()));
 ```
 
 
@@ -71,7 +71,7 @@ Use the `processPlaceholders` method to replace placeholders in strings:
 
 ```java
 String message = "Welcome to %server_motd%! Your stats: Kills: %player_stat;kills%, Deaths: %player_stat;deaths%.";
-String processedMessage = PlaceholderAPI.processPlaceholders(player, message);
+String processedMessage = PlaceholderAPI.get().processPlaceholders(player, message);
 player.sendMessage(processedMessage);
 ```
 
@@ -97,10 +97,10 @@ Welcome to PowerNukkitX Server! Your stats: Kills: 10 Kills, Deaths: 5 Deaths.
 @Override
 public void onEnable() {
     // Register a static placeholder
-    PlaceholderAPI.register("server_name", new StaticPlaceholder(() -> "My Nukkit Server"));
+    PlaceholderAPI.get().register("server_name", new StaticPlaceholder(() -> "My Nukkit Server"));
 
     // Register a dynamic placeholder
-    PlaceholderAPI.register("player_stat", new VisitorPlaceholder((player, params) -> {
+    PlaceholderAPI.get().register("player_stat", new VisitorPlaceholder((player, params) -> {
         if (params.length == 0) {
             return "No stat provided!";
         }
@@ -120,7 +120,7 @@ public void onEnable() {
 
 public void sendExampleMessage(Player player) {
     String message = "Welcome to %server_name%! Your stats: Kills: %player_stat:kills%, Deaths: %player_stat:deaths%.";
-    String processedMessage = PlaceholderAPI.processPlaceholders(player, message);
+    String processedMessage = PlaceholderAPI.get().processPlaceholders(player, message);
     player.sendMessage(processedMessage);
 }
 ```
