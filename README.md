@@ -28,6 +28,29 @@
 - **VisitorPlaceholder**: Placeholders with parameters.
 - Supports parsing parameters using `String[]` for dynamic placeholders.
 
+## Default Placeholders
+
+- **%player%**: The players username
+- **%player_displayname%**: The players displayname
+- **%player_uuid%**: The players uuid
+- **%player_ping%**: The players ping
+- **%player_level%**: The name of the world the player is in
+- **%player_health%**: The players health
+- **%player_max_health%**: The players max health
+- **%player_saturation%**: The players food saturation
+- **%player_food%**: The players food level
+- **%player_max_food%**: The players max food
+- **%player_gamemode%**: The players gamemode (numerical)
+- **%player_exp%**: The players experience
+- **%player_exp_level%**: The players experience level
+- **%player_platform%**: The players platform
+- **%player_pos%**: The players position (also can do player_pos;x for just x etc.)
+- **%server_online%**: The amount of players on the server
+- **%server_max_players%**: The player limit of the server
+- **%server_motd%**: The servers message of the day
+- **%server_tps%**: The servers tps
+- **%time%**: The servers date time (also can do time;HH:mm:ss / Other format)
+
 ## How to Use
 
 ### 1. Register a Static Placeholder
