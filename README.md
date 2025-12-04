@@ -31,8 +31,10 @@
 ## Default Placeholders
 
 - **%player%**: The players username
+- **%player_nametag%** - The players nametag
 - **%player_displayname%**: The players displayname
 - **%player_uuid%**: The players uuid
+- **%player_xuid%** - The players xuid
 - **%player_ping%**: The players ping
 - **%player_level%**: The name of the world the player is in
 - **%player_health%**: The players health
@@ -45,12 +47,18 @@
 - **%player_exp_level%**: The players experience level
 - **%player_platform%**: The players platform
 - **%player_pos%**: The players position (also can do player_pos;x for just x etc.)
+- **%player_item%** - The item the player is holding in his hand
+- **%player_offhand%** - The item the player is holding in his offhand
 - **%server_online%**: The amount of players on the server
 - **%server_max_players%**: The player limit of the server
 - **%server_motd%**: The servers message of the day
 - **%server_tps%**: The servers tps
+- **%server_tick%** - The servers current tick
+- **%server_difficulty%** - The servers difficulty
+- **%server_git%** - The servers git version
+- **%server_version%** - The servers minecraft version
+- **%server_protocol%** - The servers protocol version
 - **%time%**: The servers date time (also can do time;HH:mm:ss / Other format)
-
 ## How to Use
 
 ### 1. Register a Static Placeholder
