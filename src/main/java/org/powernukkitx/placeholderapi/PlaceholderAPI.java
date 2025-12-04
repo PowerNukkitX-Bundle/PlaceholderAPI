@@ -1,6 +1,7 @@
 package org.powernukkitx.placeholderapi;
 
 import cn.nukkit.Player;
+import cn.nukkit.network.protocol.ProtocolInfo;
 import cn.nukkit.network.protocol.types.Platform;
 import cn.nukkit.plugin.PluginBase;
 import org.powernukkitx.placeholderapi.command.PlaceholderCommand;
@@ -61,7 +62,9 @@ public class PlaceholderAPI extends PluginBase {
     private void registerDefaults() {
         this.register("player", (player, params) -> player.getName());
         this.register("player_displayname", (player, params) -> player.getDisplayName());
+        this.register("player_nametag", (player, params) -> player.getNameTag());
         this.register("player_uuid", (player, params) -> player.getUniqueId().toString());
+        this.register("player_xuid", (player, params) -> player.getXUID());
         this.register("player_ping", (player, params) -> String.valueOf(player.getPing()));
         this.register("player_level", (player, params) -> player.getLevel().getName());
         this.register("player_health", (player, params) -> String.valueOf(player.getHealth()));
@@ -70,6 +73,8 @@ public class PlaceholderAPI extends PluginBase {
         this.register("player_food", (player, params) -> String.valueOf(player.getFoodData().getFood()));
         this.register("player_max_food", (player, params) -> String.valueOf(player.getFoodData().getMaxFood()));
         this.register("player_gamemode", (player, params) -> String.valueOf(player.getGamemode()));
+        this.register("player_item", (player, params) -> player.getInventory().getItemInHand().getName());
+        this.register("player_offhand", (player, params) -> player.getOffhandInventory().getItem(0).getName());
         this.register("player_exp", (player, params) -> String.valueOf(player.getExperience()));
         this.register("player_exp_level", (player, params) -> String.valueOf(player.getExperienceLevel()));
         this.register("player_platform", (player, params) -> Platform.getPlatformByID(player.getLoginChainData().getDeviceOS()).getName());
@@ -77,6 +82,11 @@ public class PlaceholderAPI extends PluginBase {
         this.register("server_max_players", (player, params) -> String.valueOf(getServer().getMaxPlayers()));
         this.register("server_motd", (player, params) -> getServer().getMotd());
         this.register("server_tps", (player, params) -> String.valueOf(getServer().getTicksPerSecond()));
+        this.register("server_tick", (player, params) -> String.valueOf(getServer().getTick()));
+        this.register("server_difficulty", (player, params) -> String.valueOf(getServer().getDifficulty()));
+        this.register("server_git", (player, params) -> getServer().getGitCommit());
+        this.register("server_version", (player, params) -> ProtocolInfo.MINECRAFT_VERSION_NETWORK);
+        this.register("server_protocol", (player, params) -> String.valueOf(ProtocolInfo.CURRENT_PROTOCOL));
         this.register("player_pos", (p, arg) -> {
             if (arg.length == 0) return p.getFloorX() + " " + p.getFloorY() + " " + p.getFloorZ();
             return switch (arg[0]) {

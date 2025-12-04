@@ -4,8 +4,8 @@
     <modelVersion>4.0.0</modelVersion>
 
             <groupId>org.powernukkitx.placeholderapi</groupId>
-            <artifactId>placeholderapi</artifactId>
-            <version>1.1.0</version>
+            <artifactId>PlaceholderAPI</artifactId>
+            <version>1.2.0</version>
 
     <properties>
         <maven.compiler.source>21</maven.compiler.source>
