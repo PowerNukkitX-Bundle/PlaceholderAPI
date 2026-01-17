@@ -50,7 +50,12 @@ public class PlaceholderAPI extends PluginBase {
             Placeholder placeholder = placeholders.get(identifier);
             if (placeholder != null) {
                 String[] params = paramsRaw != null ? paramsRaw.split(";") : new String[0];
-                String replacement = placeholder.process(player, params);
+                String replacement;
+                try {
+                    replacement = placeholder.process(player, params);
+                } catch (Exception e) {
+                    replacement = "§cerror";
+                }
                 matcher.appendReplacement(result, replacement != null ? replacement : "");
             }
         }
