@@ -1,0 +1,71 @@
+name: Build and Release
+
+on:
+  push:
+    branches:
+      - 'master'
+    tags:
+      - 'v*'
+  pull_request:
+    branches:
+      - 'master'
+
+permissions:
+  contents: write
+
+jobs:
+  build-maven:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '21'
+
+      - name: Build with Maven
+        run: mvn -B package -DskipTests=false -Darguments="-Dmaven.javadoc.skip=true"
+
+      - name: Verify artifact
+        run: |
+          if [ ! -f target/PlaceholderAPI.jar ]; then
+            echo "target/PlaceholderAPI.jar was not created"
+            exit 1
+          fi
+
+      - name: Read project version
+        if: github.event_name == 'push'
+        id: project
+        run: |
+          VERSION=$(mvn help:evaluate -Dexpression=project.version -q -DforceStdout)
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "tag=v$VERSION" >> "$GITHUB_OUTPUT"
+
+      - name: Upload artifacts
+        uses: actions/upload-artifact@v4
+        if: success()
+        with:
+          name: PlaceholderAPI
+          path: target/PlaceholderAPI.jar
+
+      - name: Create GitHub release
+        if: github.event_name == 'push'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if [ "${{ github.ref_type }}" = "tag" ]; then
+            RELEASE_TAG="${{ github.ref_name }}"
+          else
+            RELEASE_TAG="${{ steps.project.outputs.tag }}"
+          fi
+
+          if gh release view "$RELEASE_TAG" >/dev/null 2>&1; then
+            gh release upload "$RELEASE_TAG" target/PlaceholderAPI.jar --clobber
+          else
+            gh release create "$RELEASE_TAG" target/PlaceholderAPI.jar --target "${{ github.sha }}" --title "$RELEASE_TAG" --notes "Automated release for $RELEASE_TAG"
+          fi

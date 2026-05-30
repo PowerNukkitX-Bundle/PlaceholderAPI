@@ -3,10 +3,10 @@ package org.powernukkitx.placeholderapi.command;
 import cn.nukkit.Player;
 import cn.nukkit.command.CommandSender;
 import cn.nukkit.command.PluginCommand;
-import cn.nukkit.command.data.CommandParamType;
 import cn.nukkit.command.data.CommandParameter;
 import cn.nukkit.command.tree.ParamList;
 import cn.nukkit.command.utils.CommandLogger;
+import org.cloudburstmc.protocol.bedrock.data.command.CommandParamType;
 import org.powernukkitx.placeholderapi.PlaceholderAPI;
 
 
@@ -21,7 +21,7 @@ public class PlaceholderCommand extends PluginCommand<PlaceholderAPI> {
         this.setPermission("placeholderapi.command");
         this.commandParameters.clear();
         this.commandParameters.put("default", new CommandParameter[]{
-                CommandParameter.newType("placeholder", CommandParamType.STRING)
+                CommandParameter.newType("placeholder", CommandParamType.ID)
         });
         this.enableParamTree();
     }

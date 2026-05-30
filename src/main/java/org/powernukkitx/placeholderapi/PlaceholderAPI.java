@@ -1,8 +1,7 @@
 package org.powernukkitx.placeholderapi;
 
 import cn.nukkit.Player;
-import cn.nukkit.network.protocol.ProtocolInfo;
-import cn.nukkit.network.protocol.types.Platform;
+import cn.nukkit.network.NetworkConstants;
 import cn.nukkit.plugin.PluginBase;
 import org.powernukkitx.placeholderapi.command.PlaceholderCommand;
 import org.powernukkitx.placeholderapi.placeholder.Placeholder;
@@ -54,9 +53,9 @@ public class PlaceholderAPI extends PluginBase {
                 try {
                     replacement = placeholder.process(player, params);
                 } catch (Exception e) {
-                    replacement = "§cerror";
+                    replacement = "\u00A7cerror";
                 }
-                matcher.appendReplacement(result, replacement != null ? replacement : "");
+                matcher.appendReplacement(result, Matcher.quoteReplacement(replacement != null ? replacement : ""));
             }
         }
 
@@ -72,26 +71,28 @@ public class PlaceholderAPI extends PluginBase {
         this.register("player_xuid", (player, params) -> player.getXUID());
         this.register("player_ping", (player, params) -> String.valueOf(player.getPing()));
         this.register("player_level", (player, params) -> player.getLevel().getName());
-        this.register("player_health", (player, params) -> String.valueOf(player.getHealth()));
-        this.register("player_max_health", (player, params) -> String.valueOf(player.getMaxHealth()));
+        this.register("player_health", (player, params) -> String.valueOf(player.getHealthCurrent()));
+        this.register("player_max_health", (player, params) -> String.valueOf(player.getHealthDefaultMax()));
         this.register("player_saturation", (player, params) -> String.valueOf(player.getFoodData().getSaturation()));
         this.register("player_food", (player, params) -> String.valueOf(player.getFoodData().getFood()));
         this.register("player_max_food", (player, params) -> String.valueOf(player.getFoodData().getMaxFood()));
         this.register("player_gamemode", (player, params) -> String.valueOf(player.getGamemode()));
-        this.register("player_item", (player, params) -> player.getInventory().getItemInHand().getName());
-        this.register("player_offhand", (player, params) -> player.getOffhandInventory().getItem(0).getName());
+        this.register("player_item", (player, params) -> player.getInventory().getItemInMainHand().getName());
+        this.register("player_offhand", (player, params) -> player.getInventory().getItemInOffhand().getName());
         this.register("player_exp", (player, params) -> String.valueOf(player.getExperience()));
         this.register("player_exp_level", (player, params) -> String.valueOf(player.getExperienceLevel()));
-        this.register("player_platform", (player, params) -> Platform.getPlatformByID(player.getLoginChainData().getDeviceOS()).getName());
+        this.register("player_platform", (player, params) -> player.getClientChainData().getDeviceOS().name());
+        this.register("level_tps", (player, params) -> String.valueOf(player.getLevel().getBaseTickGameLoop().getTps()));
         this.register("server_online", (player, params) -> String.valueOf(getServer().getOnlinePlayers().size()));
         this.register("server_max_players", (player, params) -> String.valueOf(getServer().getMaxPlayers()));
         this.register("server_motd", (player, params) -> getServer().getMotd());
         this.register("server_tps", (player, params) -> String.valueOf(getServer().getTicksPerSecond()));
+        this.register("server_cpu", (player, params) -> String.valueOf(getServer().getCPULoad()));
         this.register("server_tick", (player, params) -> String.valueOf(getServer().getTick()));
         this.register("server_difficulty", (player, params) -> String.valueOf(getServer().getDifficulty()));
         this.register("server_git", (player, params) -> getServer().getGitCommit());
-        this.register("server_version", (player, params) -> ProtocolInfo.MINECRAFT_VERSION_NETWORK);
-        this.register("server_protocol", (player, params) -> String.valueOf(ProtocolInfo.CURRENT_PROTOCOL));
+        this.register("server_version", (player, params) -> getServer().getVersion());
+        this.register("server_protocol", (player, params) -> String.valueOf(NetworkConstants.CODEC.getProtocolVersion()));
         this.register("player_pos", (p, arg) -> {
             if (arg.length == 0) return p.getFloorX() + " " + p.getFloorY() + " " + p.getFloorZ();
             return switch (arg[0]) {
