@@ -1,6 +1,6 @@
 package org.powernukkitx.placeholderapi.placeholder;
 
-import cn.nukkit.Player;
+import org.powernukkitx.Player;
 
 import java.util.function.Supplier;
 

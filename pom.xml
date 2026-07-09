@@ -5,11 +5,12 @@
 
             <groupId>org.powernukkitx.placeholderapi</groupId>
             <artifactId>PlaceholderAPI</artifactId>
-            <version>1.2.2</version>
+            <version>1.2.3</version>
 
     <properties>
-        <maven.compiler.source>21</maven.compiler.source>
-        <maven.compiler.target>21</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <maven.compiler.release>21</maven.compiler.release>
+        <maven.compiler.proc>none</maven.compiler.proc>
     </properties>
 
     <build>
@@ -52,7 +53,7 @@
         <dependency>
             <groupId>org.powernukkitx</groupId>
             <artifactId>server</artifactId>
-            <version>b-migration-SNAPSHOT</version>
+            <version>nightly-SNAPSHOT</version>
             <scope>provided</scope>
         </dependency>
     </dependencies>

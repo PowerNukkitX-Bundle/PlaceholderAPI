@@ -1,8 +1,8 @@
 package org.powernukkitx.placeholderapi;
 
-import cn.nukkit.Player;
-import cn.nukkit.network.NetworkConstants;
-import cn.nukkit.plugin.PluginBase;
+import org.powernukkitx.Player;
+import org.powernukkitx.network.NetworkConstants;
+import org.powernukkitx.plugin.PluginBase;
 import org.powernukkitx.placeholderapi.command.PlaceholderCommand;
 import org.powernukkitx.placeholderapi.placeholder.Placeholder;
 
