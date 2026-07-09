@@ -14,6 +14,14 @@
         <maven.compiler.proc>none</maven.compiler.proc>
     </properties>
 
+    <distributionManagement>
+        <repository>
+            <id>powernukkitx-releases</id>
+            <name>PowerNukkitX Releases</name>
+            <url>https://repo.powernukkitx.org/releases</url>
+        </repository>
+    </distributionManagement>
+
     <build>
         <finalName>PlaceholderAPI</finalName>
         <resources>
