@@ -5,19 +5,18 @@
 ## API
 
 ```xml
-<repositories>
-    <repository>
-        <id>jitpack.io</id>
-        <url>https://jitpack.io</url>
-    </repository>
-</repositories>
+<repository>
+    <id>PowerNukkitX-releases</id>
+    <name>PowerNukkitX Repository</name>
+    <url>https://repo.powernukkitx.org/releases</url>
+</repository
 ```
 
 ```xml
 <dependency>
-    <groupId>com.github.PowerNukkitX-Bundle</groupId>
+    <groupId>org.powernukkitx.placeholderapi</groupId>
     <artifactId>PlaceholderAPI</artifactId>
-    <version>main-SNAPSHOT</version>
+    <version>1.2.3</version>
     <scope>provided</scope>
 </dependency>
 ```
