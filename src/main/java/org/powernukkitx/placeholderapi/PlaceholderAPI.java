@@ -5,6 +5,7 @@ import org.powernukkitx.network.NetworkConstants;
 import org.powernukkitx.plugin.PluginBase;
 import org.powernukkitx.placeholderapi.command.PlaceholderCommand;
 import org.powernukkitx.placeholderapi.placeholder.Placeholder;
+import org.powernukkitx.utils.Utils;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -81,7 +82,7 @@ public class PlaceholderAPI extends PluginBase {
         this.register("player_offhand", (player, params) -> player.getInventory().getItemInOffhand().getName());
         this.register("player_exp", (player, params) -> String.valueOf(player.getExperience()));
         this.register("player_exp_level", (player, params) -> String.valueOf(player.getExperienceLevel()));
-        this.register("player_platform", (player, params) -> player.getClientChainData().getDeviceOS().name());
+        this.register("player_platform", (player, params) -> Utils.mapDeviceOSToString(player.getClientChainData().getDeviceOS().getId()));
         this.register("level_tps", (player, params) -> String.valueOf(player.getLevel().getBaseTickGameLoop().getTps()));
         this.register("server_online", (player, params) -> String.valueOf(getServer().getOnlinePlayers().size()));
         this.register("server_max_players", (player, params) -> String.valueOf(getServer().getMaxPlayers()));
@@ -93,9 +94,9 @@ public class PlaceholderAPI extends PluginBase {
         this.register("server_git", (player, params) -> getServer().getGitCommit());
         this.register("server_version", (player, params) -> getServer().getVersion());
         this.register("server_protocol", (player, params) -> String.valueOf(NetworkConstants.CODEC.getProtocolVersion()));
-        this.register("player_pos", (p, arg) -> {
-            if (arg.length == 0) return p.getFloorX() + " " + p.getFloorY() + " " + p.getFloorZ();
-            return switch (arg[0]) {
+        this.register("player_pos", (p, params) -> {
+            if (params.length == 0) return p.getFloorX() + " " + p.getFloorY() + " " + p.getFloorZ();
+            return switch (params[0]) {
                 case "x" -> String.valueOf(p.getFloorX());
                 case "y" -> String.valueOf(p.getFloorY());
                 case "z" -> String.valueOf(p.getFloorZ());
